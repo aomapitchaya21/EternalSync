@@ -3,55 +3,172 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>EternalSync | For You</title>
+    <title>EternalSync | Win & Fai</title>
+    <link href="https://fonts.googleapis.com/css2?family=Mali:wght@400;700&display=swap" rel="stylesheet">
     <style>
+        :root {
+            --primary: #ff85a1;
+            --secondary: #ffafbd;
+            --bg: #fff5f7;
+            --glass: rgba(255, 255, 255, 0.7);
+        }
+
         body {
             margin: 0;
+            padding: 0;
+            background: linear-gradient(135deg, #fff5f7 0%, #ffdee9 100%);
+            font-family: 'Mali', cursive;
+            color: #4a4a4a;
+            min-height: 100vh;
             display: flex;
-            justify-content: center;
+            flex-direction: column;
             align-items: center;
-            height: 100vh;
-            background-color: #0d1117; /* สีเข้มแบบ GitHub */
-            color: #58a6ff;
-            font-family: 'Courier New', Courier, monospace;
+        }
+
+        .header-section {
             text-align: center;
+            padding: 40px 20px;
+            animation: fadeIn 1.5s ease;
         }
-        .container {
-            border: 1px solid #30363d;
-            padding: 2rem;
-            border-radius: 10px;
-            background: #161b22;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
-        }
-        h1 { font-size: 1.5rem; margin-bottom: 1rem; }
-        p { color: #8b949e; line-height: 1.6; }
-        .heart { color: #f85149; font-size: 2rem; animation: pulse 1s infinite; }
-        @keyframes pulse {
-            0% { transform: scale(1); }
-            50% { transform: scale(1.2); }
-            100% { transform: scale(1); }
-        }
-        .btn {
+
+        .sender-receiver {
+            background: var(--glass);
+            padding: 10px 25px;
+            border-radius: 50px;
+            backdrop-filter: blur(10px);
+            border: 1px solid white;
+            font-weight: bold;
+            box-shadow: 0 4px 15px rgba(255, 133, 161, 0.1);
+            margin-bottom: 20px;
             display: inline-block;
-            margin-top: 20px;
-            padding: 10px 20px;
-            color: #aff5b4;
-            border: 1px solid #3fb950;
-            text-decoration: none;
-            border-radius: 5px;
-            transition: 0.3s;
         }
-        .btn:hover { background: #238636; color: white; }
+
+        .counter-card {
+            background: var(--glass);
+            backdrop-filter: blur(15px);
+            padding: 30px;
+            border-radius: 30px;
+            width: 85%;
+            max-width: 450px;
+            border: 1px solid white;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        h2 { color: var(--primary); margin-bottom: 15px; }
+
+        .time-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .time-unit {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .time-value {
+            font-size: 2rem;
+            font-weight: bold;
+            color: var(--primary);
+        }
+
+        .time-label { font-size: 0.8rem; color: #888; }
+
+        .menu-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+            width: 85%;
+            max-width: 450px;
+            margin-bottom: 50px;
+        }
+
+        .menu-btn {
+            background: var(--glass);
+            padding: 20px 15px;
+            border-radius: 20px;
+            text-decoration: none;
+            color: #4a4a4a;
+            border: 1px solid white;
+            transition: 0.3s;
+            text-align: center;
+            font-size: 0.9rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.02);
+        }
+
+        .menu-btn:hover {
+            transform: translateY(-5px);
+            background: white;
+            box-shadow: 0 8px 20px rgba(255, 133, 161, 0.2);
+        }
+
+        .icon { font-size: 1.5rem; margin-bottom: 8px; }
+
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
     </style>
 </head>
 <body>
-    <div class="container">
-        <div class="heart">❤</div>
-        <h1>System.init("EternalSync");</h1>
-        <p>> Connection established...<br>
-           > Happiness synced successfully.<br>
-           > I love you more than all the code in this world.</p>
-        <a href="#" class="btn">Click to decrypt my heart</a>
+
+    <div class="header-section">
+        <div class="sender-receiver">From: Win 💖 To: Fai</div>
+        <h1 style="color: var(--primary);">EternalSync</h1>
     </div>
+
+    <div class="counter-card">
+        <p>We've been together for...</p>
+        <div class="time-grid">
+            <div class="time-unit"><span class="time-value" id="years">0</span><span class="time-label">ปี</span></div>
+            <div class="time-unit"><span class="time-value" id="months">0</span><span class="time-label">เดือน</span></div>
+            <div class="time-unit"><span class="time-value" id="days">0</span><span class="time-label">วัน</span></div>
+        </div>
+        <p style="margin-top: 20px; font-size: 0.8rem; color: #aaa;" id="total-days">Loading memories...</p>
+    </div>
+
+    <div class="menu-grid">
+        <a href="#" class="menu-btn"><span class="icon">📸</span>ความทรงจำของพวกเรา</a>
+        <a href="#" class="menu-btn"><span class="icon">🧩</span>คำถามทายใจ</a>
+        <a href="#" class="menu-btn"><span class="icon">🔒</span>จดหมายลับ</a>
+        <a href="#" class="menu-btn"><span class="icon">🎫</span>คูปองพิเศษสำหรับเธอ</a>
+    </div>
+
+    <script>
+        function updateCounter() {
+            const start = new Date("2024-10-04T00:00:00");
+            const now = new Date();
+            
+            let years = now.getFullYear() - start.getFullYear();
+            let months = now.getMonth() - start.getMonth();
+            let days = now.getDate() - start.getDate();
+
+            if (days < 0) {
+                months--;
+                let lastMonth = new Date(now.getFullYear(), now.getMonth(), 0);
+                days += lastMonth.getDate();
+            }
+            if (months < 0) {
+                years--;
+                months += 12;
+            }
+
+            document.getElementById('years').innerText = years;
+            document.getElementById('months').innerText = months;
+            document.getElementById('days').innerText = days;
+
+            const totalTime = now - start;
+            const totalDays = Math.floor(totalTime / (1000 * 60 * 60 * 24));
+            document.getElementById('total-days').innerText = `ทั้งหมด ${totalDays} วันที่แสนพิเศษ`;
+        }
+
+        updateCounter();
+        setInterval(updateCounter, 1000 * 60 * 60); // อัปเดตทุกชั่วโมง
+    </script>
 </body>
 </html>
