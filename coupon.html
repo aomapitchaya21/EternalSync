@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Special Coupons | Win & Fai</title>
+    <link href="https://fonts.googleapis.com/css2?family=Mali:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            background: #fff5f7;
+            font-family: 'Mali', cursive;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .nav-back { align-self: flex-start; text-decoration: none; color: #ff85a1; font-weight: bold; margin-bottom: 20px; }
+        
+        h1 { color: #ff85a1; text-align: center; }
+        
+        .coupon-grid {
+            display: grid;
+            gap: 20px;
+            width: 100%;
+            max-width: 400px;
+        }
+
+        .coupon-card {
+            background: white;
+            border: 2px dashed #ffafbd;
+            border-radius: 15px;
+            padding: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            transition: 0.3s;
+        }
+
+        .coupon-info { flex-grow: 1; }
+        .coupon-title { font-weight: bold; color: #4a4a4a; font-size: 1.1rem; }
+        .coupon-desc { font-size: 0.85rem; color: #888; }
+
+        .use-btn {
+            background: #ff85a1;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 10px;
+            cursor: pointer;
+            font-family: 'Mali', cursive;
+            margin-left: 10px;
+        }
+
+        .use-btn.used {
+            background: #ccc;
+            cursor: not-allowed;
+        }
+    </style>
+</head>
+<body>
+
+    <a href="index.html" class="nav-back">← กลับหน้าหลัก</a>
+    <h1>🎫 คูปองพิเศษสำหรับฝ้าย</h1>
+
+    <div class="coupon-grid">
+        <div class="coupon-card">
+            <div class="coupon-info">
+                <div class="coupon-title">บุฟเฟต์ชาบู 1 มื้อ 🍲</div>
+                <div class="coupon-desc">วินจ่ายเอง ร้านไหนก็ได้ตามใจฝ้าย</div>
+            </div>
+            <button class="use-btn" onclick="useCoupon(this)">ใช้สิทธิ์</button>
+        </div>
+
+        <div class="coupon-card">
+            <div class="coupon-info">
+                <div class="coupon-title">บัตรห้ามโกรธ 1 ครั้ง 🥺</div>
+                <div class="coupon-desc">ใช้ตอนวินทำผิด (เล็กน้อย) ห้ามโกรธนะ</div>
+            </div>
+            <button class="use-btn" onclick="useCoupon(this)">ใช้สิทธิ์</button>
+        </div>
+
+        <div class="coupon-card">
+            <div class="coupon-info">
+                <div class="coupon-title">นวดไหล่ 30 นาที 💆‍♀️</div>
+                <div class="coupon-desc">บริการนวดสุดพิเศษโดยหมอวิน</div>
+            </div>
+            <button class="use-btn" onclick="useCoupon(this)">ใช้สิทธิ์</button>
+        </div>
+    </div>
+
+    <script>
+        function useCoupon(btn) {
+            if (confirm("ต้องการใช้คูปองนี้เลยไหมจ๊ะ? (ใช้ได้ครั้งเดียวนะ)")) {
+                btn.innerText = "ใช้แล้ว ✅";
+                btn.classList.add('used');
+                btn.disabled = true;
+                alert("ส่งแคปหน้าจอมาให้วินได้เลย! ❤️");
+            }
+        }
+    </script>
+</body>
+</html>
