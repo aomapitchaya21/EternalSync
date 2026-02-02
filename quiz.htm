@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Heart Quiz | Win & Fai</title>
+    <link href="https://fonts.googleapis.com/css2?family=Mali:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            background: #fff5f7;
+            font-family: 'Mali', cursive;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            margin: 0;
+            padding: 20px;
+        }
+        .quiz-container {
+            background: white;
+            padding: 30px;
+            border-radius: 20px;
+            box-shadow: 0 10px 25px rgba(255, 133, 161, 0.2);
+            width: 100%;
+            max-width: 400px;
+            text-align: center;
+        }
+        h1 { color: #ff85a1; font-size: 1.5rem; }
+        .question { margin-bottom: 20px; font-weight: bold; }
+        .options-grid { display: grid; gap: 10px; }
+        button {
+            background: #fff;
+            border: 2px solid #ffafbd;
+            padding: 12px;
+            border-radius: 12px;
+            cursor: pointer;
+            font-family: 'Mali', cursive;
+            transition: 0.3s;
+        }
+        button:hover { background: #ffafbd; color: white; }
+        .hidden { display: none; }
+        #result-screen { animation: pop 0.5s ease; }
+        @keyframes pop { 0% { transform: scale(0.5); } 100% { transform: scale(1); } }
+    </style>
+</head>
+<body>
+
+    <div class="quiz-container" id="quiz-box">
+        <h1>💖 คำถามทายใจ 💖</h1>
+        <div id="question-container">
+            <p class="question" id="q-text">เราเจอกันครั้งแรกที่ไหน?</p>
+            <div class="options-grid" id="options">
+                </div>
+        </div>
+    </div>
+
+    <div class="quiz-container hidden" id="result-screen">
+        <h1 style="font-size: 3rem;">🎉</h1>
+        <h2>เย้! ตอบถูกหมดเลย</h2>
+        <p>เก่งมากเลยฝ้าย! วินรักฝ้ายที่สุดเลยนะ ❤️</p>
+        <button onclick="window.location.href='index.html'">กลับหน้าหลัก</button>
+    </div>
+
+    <script>
+        const quizData = [
+            {
+                q: "เราเจอกันครั้งแรกที่ไหน?",
+                a: ["สยาม", "คาเฟ่", "มหาลัย", "ห้าง"], // แก้คำตอบได้ตรงนี้
+                correct: 2 // ลำดับคำตอบที่ถูก (เริ่มนับจาก 0)
+            },
+            {
+                q: "สีที่วินชอบคือสีอะไร?",
+                a: ["แดง", "น้ำเงิน", "ดำ", "ขาว"],
+                correct: 1
+            },
+            {
+                q: "ฝ้ายน่ารักที่สุดตอนไหน?",
+                a: ["ตอนกิน", "ตอนนอน", "ตอนงอน", "ทุกตอน!"],
+                correct: 3
+            }
+        ];
+
+        let currentQ = 0;
+
+        function loadQuestion() {
+            const q = quizData[currentQ];
+            document.getElementById('q-text').innerText = q.q;
+            const optionsDiv = document.getElementById('options');
+            optionsDiv.innerHTML = '';
+            
+            q.a.forEach((opt, index) => {
+                const btn = document.createElement('button');
+                btn.innerText = opt;
+                btn.onclick = () => checkAnswer(index);
+                optionsDiv.appendChild(btn);
+            });
+        }
+
+        function checkAnswer(index) {
+            if (index === quizData[currentQ].correct) {
+                currentQ++;
+                if (currentQ < quizData.length) {
+                    loadQuestion();
+                } else {
+                    document.getElementById('quiz-box').classList.add('hidden');
+                    document.getElementById('result-screen').classList.remove('hidden');
+                }
+            } else {
+                alert("ผิดแล้วววว ลองใหม่นะจ๊ะ! 😜");
+            }
+        }
+
+        loadQuestion();
+    </script>
+</body>
+</html>
