@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Secret Letter | Win & Fai</title>
+    <link href="https://fonts.googleapis.com/css2?family=Mali:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            background: #fff5f7;
+            font-family: 'Mali', cursive;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            margin: 0;
+            padding: 20px;
+        }
+        .letter-container {
+            background: white;
+            padding: 40px 30px;
+            border-radius: 20px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+            width: 100%;
+            max-width: 500px;
+            text-align: center;
+            position: relative;
+        }
+        .lock-screen {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        input {
+            padding: 12px;
+            border: 2px solid #ffafbd;
+            border-radius: 10px;
+            width: 80%;
+            margin: 15px 0;
+            text-align: center;
+            font-family: 'Mali', cursive;
+            font-size: 1.1rem;
+        }
+        button {
+            background: #ff85a1;
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            border-radius: 10px;
+            cursor: pointer;
+            font-family: 'Mali', cursive;
+            transition: 0.3s;
+        }
+        button:hover { background: #ff5c81; }
+        
+        .secret-content {
+            display: none; /* ซ่อนไว้จนกว่าจะใส่รหัสถูก */
+            line-height: 1.8;
+            text-align: left;
+            color: #4a4a4a;
+            animation: fadeIn 1s ease;
+        }
+        .hidden { display: none; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+    </style>
+</head>
+<body>
+
+    <div class="letter-container">
+        <div id="lock-screen" class="lock-screen">
+            <h1 style="color: #ff85a1;">🔒 จดหมายฉบับนี้ล็อคอยู่</h1>
+            <p>กรุณาใส่รหัสผ่าน (วันครบรอบของเรา: ววดด)</p>
+            <input type="password" id="password" placeholder="เช่น 0410">
+            <button onclick="unlock()">เปิดอ่านจดหมาย</button>
+        </div>
+
+        <div id="secret-content" class="secret-content">
+            <h1 style="color: #ff85a1; text-align: center;">💌 ถึง ฝ้ายที่รัก</h1>
+            <p>
+                ตั้งแต่วันแรกที่ได้รู้จักกับฝ้าย วินรู้สึกว่าตัวเองโชคดีมาก... <br><br>
+                 <br><br>
+                ขอบคุณที่อยู่ข้างกันนะ รักฝ้ายที่สุดเลยครับ ❤️
+            </p>
+            <div style="text-align: center; margin-top: 30px;">
+                <button onclick="window.location.href='index.html'">กลับหน้าหลัก</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function unlock() {
+            const pass = document.getElementById('password').value;
+            const correctPass = "2210"; // <--- แก้รหัสผ่านที่ต้องการตรงนี้ครับ
+
+            if (pass === correctPass) {
+                document.getElementById('lock-screen').classList.add('hidden');
+                document.getElementById('secret-content').style.display = 'block';
+            } else {
+                alert("รหัสผ่านไม่ถูกต้องนะจ๊ะ ลองใหม่อีกที! ❤️");
+            }
+        }
+    </script>
+</body>
+</html>
